@@ -1,0 +1,7 @@
+<form novalidate>
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput id="name" type="text" [formControl]="name">
+  </mat-form-field>
+  <p>{{ name.value }}</p>
+</form>
