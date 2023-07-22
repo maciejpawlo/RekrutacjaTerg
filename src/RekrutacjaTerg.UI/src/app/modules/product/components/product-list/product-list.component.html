@@ -1,5 +1,5 @@
 <div class="flex-row items-center justify-center">
-  <app-table class="flex-1"></app-table>
+  <app-table class="flex-1" [data]="ELEMENT_DATA" [columns]="columns" (page)="handlePageChanged($event)"></app-table>
   <app-button title="Add product" color="primary" (onClick)="handleAddProductButtonClick()"></app-button>
 </div>
 
