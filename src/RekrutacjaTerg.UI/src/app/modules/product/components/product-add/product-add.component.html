@@ -1,7 +1,20 @@
-<form novalidate>
-  <mat-form-field appearance="fill">
-    <mat-label>Name</mat-label>
-    <input matInput id="name" type="text" [formControl]="name">
-  </mat-form-field>
-  <p>{{ name.value }}</p>
-</form>
+<mat-card class="mat-elevation-z8 flex-1 p-5">
+    <form novalidate [formGroup]="productForm" class="flex flex-col">
+      <mat-form-field appearance="fill" class="flex-1">
+        <mat-label>Name</mat-label>
+        <input matInput id="name" type="text" [formControl]="productForm.controls.name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Code</mat-label>
+        <input matInput id="code" type="text" [formControl]="productForm.controls.code">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input matInput id="price" type="number" [formControl]="productForm.controls.price">
+      </mat-form-field>
+
+      <app-button (onClick)="submit()" title="Save"></app-button>
+    </form>
+</mat-card>

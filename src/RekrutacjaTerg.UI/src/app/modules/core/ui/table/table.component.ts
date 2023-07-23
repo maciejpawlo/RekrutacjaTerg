@@ -16,7 +16,9 @@ import { Column } from './interfaces/column';
 export class TableComponent implements AfterViewInit, OnInit{
 
   @Input() columns!: Array<Column>;
-  @Input() data!: Array<any>;
+  @Input() set data(data: Array<any>){
+    this.setDataSource(data);
+  }
   @Input() totalRows!: number;
   @Input() pageSizeOptions: number[] = [5, 10, 20];
   @Output() page = new EventEmitter<PageEvent>;
@@ -24,18 +26,21 @@ export class TableComponent implements AfterViewInit, OnInit{
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   displayedColumns!: Array<string>;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator, { read: true }) paginator!: MatPaginator;
 
   ngOnInit(): void {
     this.displayedColumns = this.columns.map((tableColumn: Column) => tableColumn.caption);
   }
 
   ngAfterViewInit(): void {
-    this.dataSource = new MatTableDataSource(this.data);
     this.dataSource.paginator = this.paginator;
   }
 
   onPageChanged($event: PageEvent | undefined): void {
     this.page.emit($event);
+  }
+
+  setDataSource(data: Array<any>): void {
+    this.dataSource = new MatTableDataSource(data);
   }
 }

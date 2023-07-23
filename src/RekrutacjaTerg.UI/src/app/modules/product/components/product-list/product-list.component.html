@@ -1,5 +1,6 @@
-<div class="flex-row items-center justify-center">
-  <app-table class="flex-1" [data]="ELEMENT_DATA" [columns]="columns" (page)="handlePageChanged($event)"></app-table>
-  <app-button title="Add product" color="primary" (onClick)="handleAddProductButtonClick()"></app-button>
+<div class="flex flex-col">
+  <app-table class="flex-1" [data]="items" [columns]="columns"
+  (page)="handlePageChanged($event)" [totalRows]="totalRows"></app-table>
+  <app-button class="mt-5" title="Add product" color="primary" (onClick)="handleAddProductButtonClick()"></app-button>
 </div>
 
