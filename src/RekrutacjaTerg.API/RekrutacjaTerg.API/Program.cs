@@ -4,6 +4,13 @@ using RekrutacjaTerg.Application;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//NOTE: allow all origins only for dev reasons
+//in prod should specify concrete cors
+var myCorsName = "mycors";
+builder.Services.AddCors(p => p.AddPolicy("mycors", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -23,6 +30,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(myCorsName);
 
 app.UseAuthorization();
 
